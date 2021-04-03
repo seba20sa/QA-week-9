@@ -6,17 +6,74 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
         <script src="" defer="defer"></script>
         <script src="j" defer="defer"></script>    
         <title>REGISTER</title>    
     </head>
     <body>
-        <header>        
+        <header>
+            <a href="">
+                <button id="back-to-login">Back to Login</button>
+            </a>            
         </header>
-        <form>        
+        <form>
+            <div class="field-container">
+                <label for="name">
+                    Name:
+                </label>
+                <input type="text" name="name" id="form-name">
+                <div class="error-message-hidden" id="error-name">
+                    <span>
+                        Name format is incorrect
+                    </span>
+                </div>
+            </div>
+            <div class="field_container">
+                <label for="email">
+                    E-mail:
+                </label>
+                <input type="text" name="email" id="form-email">
+                <div class="error-message-hidden" id="error-email">
+                    <span>
+                        Please use a valid email address
+                    </span>
+                </div>
+            </div>
+            <div class="field_container">
+                <label for="first-password">
+                    Create a password:
+                </label>
+                <input type="text" name="first-password" id="form-first-password">
+                <div class="error-message-hidden" id="error-first-password">
+                    <span>
+                        Use a valid password
+                    </span>
+                </div>
+            </div>
+            <div class="field_container">
+                <label for="second-password">
+                    Confirm password:
+                </label>
+                <input type="text" name="second-password" id="form-second-password">
+                <div class="error-message-hidden" id="error-second-password">
+                    <span>
+                        Passwords don't match
+                    </span>
+                </div>
+            </div>
+            <div id="form-buttons">
+                <input type="submit" value="Submit" id="submit-button">
+                <button id="reset-fields-button">Reset fields</button>
+            </div>            
         </form>
         <footer>
+            <div id="final-credits-bar">
+                <p>
+                    © 2021 Radium Rocket
+                </p>
+            </div>
         </footer>
     </body>
 </html>

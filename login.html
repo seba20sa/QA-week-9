@@ -4,17 +4,51 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
         <script src="" defer="defer"></script>
         <script src="j" defer="defer"></script>    
         <title>LOGIN</title>    
     </head>
     <body>
-        <header>        
+        <header>
+            <a href="">
+                <button id="back-to-register">Back to Register</button>
+            </a> 
         </header>
-        <form>        
+        <form>
+            <div class="field-container">
+                <label for="login-email">
+                    E-mail:
+                </label>
+                <input type="text" name="login-email" id="form-login-email">
+                <div class="error-message-hidden" id="error-login-email">
+                    <span>
+                        Please enter a valid e-mail address
+                    </span>
+                </div>
+            </div>
+            <div class="field-container">
+                <label for="login-password">
+                    Password:
+                </label>
+                <input type="text" name="login-password" id="form-login-password">
+                <div class="error-message-hidden" id="error-login-password">
+                    <span>
+                        Please enter a valid password
+                    </span>
+                </div>
+            </div>
+            <div id="form-buttons">
+                <input type="submit" value="Log in" id="login-button">
+            </div> 
         </form>
         <footer>
+            <div id="final-credits-bar">
+                <p>
+                    © 2021 Radium Rocket
+                </p>
+            </div>
         </footer>
     </body>
 </html>
