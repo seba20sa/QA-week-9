@@ -7,12 +7,13 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
         <script src="" defer="defer"></script>
-        <script src="j" defer="defer"></script>    
+        <script src="" defer="defer"></script>    
         <title>LOGIN</title>    
     </head>
     <body>
         <header>
-            <a href="">
+            <h1>LOGIN</h1>
+            <a href="register.html">
                 <button id="back-to-register">Back to Register</button>
             </a> 
         </header>
@@ -22,27 +23,22 @@
                     E-mail:
                 </label>
                 <input type="text" name="login-email" id="form-login-email">
-                <div class="error-message-hidden" id="error-login-email">
-                    <span>
-                        Please enter a valid e-mail address
-                    </span>
-                </div>
             </div>
             <div class="field-container">
                 <label for="login-password">
                     Password:
                 </label>
-                <input type="text" name="login-password" id="form-login-password">
-                <div class="error-message-hidden" id="error-login-password">
-                    <span>
-                        Please enter a valid password
-                    </span>
-                </div>
+                <input type="text" name="login-password" id="form-login-password">                
             </div>
             <div id="form-buttons">
                 <input type="submit" value="Log in" id="login-button">
             </div> 
         </form>
+        <div class="error-log-container">
+            <ul>
+                <li>Errors</li>
+            </ul>
+        </div>
         <footer>
             <div id="final-credits-bar">
                 <p>
