@@ -45,11 +45,20 @@ form {
     background-color: yellow;
 }
 /*ERROR LOGS*/
-.error-log-container {
+.hidden {
+    display: none;
+}
+#error-log-container {    
     background-color: aqua;
     padding: 10px 0px;
 }
-.error-log-container li {
+#error-log-container h2 {
+    margin-left: 15px;
+    font-size: 25px;
+    font-weight: bold;
+    color: brown;
+}
+#error-log-container li {
     margin-left: -20px;
     list-style-type: none;
 }

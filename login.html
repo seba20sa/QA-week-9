@@ -6,8 +6,7 @@
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
-        <script src="" defer="defer"></script>
-        <script src="" defer="defer"></script>    
+        <script src="js/login.js" defer="defer"></script>  
         <title>LOGIN</title>    
     </head>
     <body>
@@ -34,9 +33,11 @@
                 <input type="submit" value="Log in" id="login-button">
             </div> 
         </form>
-        <div class="error-log-container">
-            <ul>
-                <li>Errors</li>
+        <div id="error-log-container" class="hidden">
+            <h2>Errors: </h2>
+            <ul id="list-of-errors">
+                <li>Example</li>
+                
             </ul>
         </div>
         <footer>
