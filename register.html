@@ -7,9 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>
-        <script src="" defer="defer"></script>
-        <script src="j" defer="defer"></script>    
+        <script src="https://kit.fontawesome.com/e15e8c34af.js" crossorigin="anonymous"></script>        
+        <script src="js/register.js" defer="defer"></script>    
         <title>REGISTER</title>    
     </head>
     <body>
@@ -24,35 +23,34 @@
                 <label for="name">
                     Name:
                 </label>
-                <input type="text" name="name" id="form-name">
+                <input type="text" name="name" id="form-register-name">
             </div>
             <div class="field-container">
                 <label for="email">
                     E-mail:
                 </label>
-                <input type="text" name="email" id="form-email">
+                <input type="text" name="email" id="form-register-email">
             </div>
             <div class="field-container">
                 <label for="first-password">
                     Create a password:
                 </label>
-                <input type="text" name="first-password" id="form-first-password">
+                <input type="password" name="first-password" id="form-register-first-password">
             </div>
             <div class="field-container">
                 <label for="second-password">
                     Confirm password:
                 </label>
-                <input type="text" name="second-password" id="form-second-password">                
+                <input type="password" name="second-password" id="form-register-second-password">                
             </div>
             <div id="form-buttons">
                 <button id="reset-fields-button">Reset fields</button>
-                <input type="submit" value="Submit" id="submit-button">
-                
+                <button id="submit-button" >Submit</button>                
             </div>            
         </form>
-        <div id="error-log-container">
-            <ul>
-                <li>Errors</li>
+        <div id="error-log-container" class="hidden">
+            <h2>Validation report: </h2>
+            <ul id="list-of-errors">
             </ul>
         </div>
         <footer>

@@ -8,23 +8,17 @@ var labelsCounter = document.getElementsByTagName('label')
 var inputsCounter = document.getElementsByTagName('input')
 var buttonsCounter = document.getElementsByTagName('button')
 var formCounter = document.getElementsByTagName('form')
-
 /*EVENT LISTENERS*/
 formLoginButton.addEventListener('click', submitLoginForm);
-
 /*FUNCTIONS*/
-
-/*First we create a function that creates new li items on a list to add error messages on to the errors log div*/ 
-
+/*First we create a function that creates new li items on a list to add error messages 
+on to the errors log div*/
 function createMenuItem(error) {
     let newListItem = document.createElement('li');
     newListItem.textContent = error;
     return newListItem;
 }
-
-/*the function performs a validation for the fields and the DOM elements as
-well*/
-
+/*the function performs a validation for the fields and the DOM elements as well*/
 function submitLoginForm(e) {    
     e.preventDefault();
     errorLoginContainer.classList.toggle('hidden');
