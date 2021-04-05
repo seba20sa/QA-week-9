@@ -5,6 +5,8 @@ var formRegisterFirstPassword = document.getElementById('form-register-first-pas
 var formRegisterSecondPassword = document.getElementById('form-register-second-password');
 var errorLoginContainer = document.getElementById('error-log-container');
 var formRegisterSubmitButton = document.getElementById('submit-button');
+var formRegisterResetButton = document.getElementById('reset-fields-button');
+var registerForm = document.getElementsByTagName('form');
 var listOfErrors = document.getElementById('list-of-errors');
 var labelsCounter = document.getElementsByTagName('label');
 var inputsCounter = document.getElementsByTagName('input');
@@ -12,6 +14,7 @@ var buttonsCounter = document.getElementsByTagName('button');
 var formCounter = document.getElementsByTagName('form');
 /*EVENT LISTENERS*/
 formRegisterSubmitButton.addEventListener('click', submitRegisterForm);
+formRegisterResetButton.addEventListener('click', resetRegisterForm);
 /*FUNCTIONS*/
 /*First we create a function that creates new li items on a list to add error messages 
 on to the errors log div*/
@@ -32,8 +35,7 @@ function submitRegisterForm(e) {
          formRegisterSecondPassword.value.length !== 0 
         ) {
             listOfErrors.appendChild(createMenuItem('Everything is fine')); 
-        } else {
-            
+        } else {            
             if (!formCounter) {
                 listOfErrors.appendChild(createMenuItem('There is no form in DOM')).classList.toggle('error-message'); 
             }
@@ -79,4 +81,7 @@ function submitRegisterForm(e) {
                 listOfErrors.appendChild(createMenuItem('The second password field is not empty')); 
             }
         }
+}
+function resetRegisterForm(e) {
+    registerForm.reset();
 }
