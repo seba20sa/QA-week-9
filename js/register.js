@@ -29,56 +29,83 @@ function submitRegisterForm(e) {
     errorLoginContainer.classList.toggle('hidden');
     /*validation for elements*/
     if ( 
-        formCounter && labelsCounter.length === 4 && inputsCounter.length === 4 &&
-         buttonsCounter.length === 3 && formRegisterName.value.length !==0 && 
-         formRegisterEmail.value.length !==0 && formRegisterFirstPassword.value.length !==0 &&
-         formRegisterSecondPassword.value.length !== 0 
+        formCounter && labelsCounter.length === 4 && inputsCounter.length === 4 
+        && buttonsCounter.length === 3 && formRegisterName.value.length !==0 
+        && formRegisterEmail.value.length !==0
+        && formRegisterEmail.value.includes('@') && formRegisterEmail.value.includes('.com') 
+        && formRegisterFirstPassword.value.length !==0 
+        && formRegisterSecondPassword.value.length !== 0 
+        && formRegisterFirstPassword.value === formRegisterSecondPassword.value
         ) {
-            listOfErrors.appendChild(createMenuItem('Everything is fine')); 
+            listOfErrors.appendChild(createMenuItem('Every validation has passed')); 
         } else {            
             if (!formCounter) {
-                listOfErrors.appendChild(createMenuItem('There is no form in DOM')).classList.toggle('error-message'); 
+                listOfErrors.appendChild(createMenuItem('There is no form in DOM')).
+                classList.toggle('error-message'); 
             }
             if (labelsCounter.length === 0) {
-                listOfErrors.appendChild(createMenuItem('There are no labels in the form')).classList.toggle('error-message'); 
+                listOfErrors.appendChild(createMenuItem('There are no labels in the form')).
+                classList.toggle('error-message'); 
             } else if (labelsCounter.length < 4) {
-                listOfErrors.appendChild(createMenuItem('There are missing labels in the form')).classList.toggle('error-message'); 
+                listOfErrors.appendChild(createMenuItem('There are missing labels in the form')).
+                classList.toggle('error-message'); 
             }  else if (labelsCounter.length >= 4) {
-                listOfErrors.appendChild(createMenuItem('There are ' + labelsCounter.length + ' labels in the form'));
+                listOfErrors.appendChild(createMenuItem('There are ' 
+                + labelsCounter.length + ' labels in the form'));
             }
             if (inputsCounter.length === 0) {
-                listOfErrors.appendChild(createMenuItem('There are no inputs in the form')).classList.toggle('error-message'); 
+                listOfErrors.appendChild(createMenuItem('There are no inputs in the form')).
+                classList.toggle('error-message'); 
             } else if (inputsCounter.length < 4) {
-                listOfErrors.appendChild(createMenuItem('There are missing inputs in the form')).classList.toggle('error-message'); 
+                listOfErrors.appendChild(createMenuItem('There are missing inputs in the form')).
+                classList.toggle('error-message'); 
             }  else if (inputsCounter.length >= 4) {
-                listOfErrors.appendChild(createMenuItem('There are ' + inputsCounter.length + ' inputs in the form'));
+                listOfErrors.appendChild(createMenuItem('There are ' 
+                + inputsCounter.length + ' inputs in the form'));
             }
             if (buttonsCounter.length === 0) {
-                listOfErrors.appendChild(createMenuItem('There are no buttons in the form')).classList.toggle('error-message'); 
+                listOfErrors.appendChild(createMenuItem('There are no buttons in the form')).
+                classList.toggle('error-message'); 
             } else if (buttonsCounter.length < 3) {
-                listOfErrors.appendChild(createMenuItem('There are missing buttons in the form')).classList.toggle('error-message'); 
+                listOfErrors.appendChild(createMenuItem('There are missing buttons in the form')).
+                classList.toggle('error-message'); 
             }  else if (buttonsCounter.length >= 3) {
-                listOfErrors.appendChild(createMenuItem('There are ' + buttonsCounter.length + ' buttons in the form'));
+                listOfErrors.appendChild(createMenuItem('There are ' 
+                + buttonsCounter.length + ' buttons in the form'));
             }
             if (formRegisterName.value.length === 0) {
-                listOfErrors.appendChild(createMenuItem('The Name field is empty')).classList.toggle('error-message');
+                listOfErrors.appendChild(createMenuItem('The Name field is empty')).
+                classList.toggle('error-message');
             } else {
                 listOfErrors.appendChild(createMenuItem('The Name field is not empty')); 
             }
             if (formRegisterEmail.value.length === 0) {
-                listOfErrors.appendChild(createMenuItem('The e-mail field is empty')).classList.toggle('error-message');
+                listOfErrors.appendChild(createMenuItem('The e-mail field is empty')).
+                classList.toggle('error-message');
             } else {
                 listOfErrors.appendChild(createMenuItem('The e-mail field is not empty')); 
             }
+            if (!formRegisterEmail.value.includes('@') || !formRegisterEmail.value.includes('.com')) {
+                listOfErrors.appendChild(createMenuItem('The e-mail format is incorrect')).
+                classList.toggle('error-message');
+            }
             if (formRegisterFirstPassword.value.length === 0) {
-                listOfErrors.appendChild(createMenuItem('The first password field is empty')).classList.toggle('error-message');
+                listOfErrors.appendChild(createMenuItem('The first password field is empty')).
+                classList.toggle('error-message');
             } else {
                 listOfErrors.appendChild(createMenuItem('The first password field is not empty')); 
             }
             if (formRegisterSecondPassword.value.length === 0) {
-                listOfErrors.appendChild(createMenuItem('The second password field is empty')).classList.toggle('error-message');
+                listOfErrors.appendChild(createMenuItem('The second password field is empty')).
+                classList.toggle('error-message');
             } else {
                 listOfErrors.appendChild(createMenuItem('The second password field is not empty')); 
+            }
+            if (formRegisterFirstPassword.value === formRegisterSecondPassword.value) {
+                listOfErrors.appendChild(createMenuItem('Passwords match'));                 
+            } else {
+                listOfErrors.appendChild(createMenuItem('Passwords do not match')).
+                classList.toggle('error-message');
             }
         }
 }
