@@ -40,7 +40,7 @@ function submitRegisterForm(e) {
             listOfErrors.appendChild(createMenuItem('Every validation has passed')); 
         } else {            
             if (!formCounter) {
-                listOfErrors.appendChild(createMenuItem('There is no form in DOM')).
+                listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
                 classList.toggle('error-message'); 
             }
             if (labelsCounter.length === 0) {
