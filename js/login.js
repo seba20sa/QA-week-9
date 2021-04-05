@@ -4,24 +4,23 @@ var formLoginPassword = document.getElementById('form-login-password');
 var errorLoginContainer = document.getElementById('error-log-container');
 var formLoginButton = document.getElementById('login-button');
 var listOfErrors = document.getElementById('list-of-errors');
-// var loginEmailErrorMessage = '';
-// var loginPasswordErrorMessage = '';
-// var domErrorMessage = '';
-// var newListItem = document.createElement('li');
-
 
 /*EVENT LISTENERS*/
 formLoginButton.addEventListener('click', submitLoginForm);
 
 /*FUNCTIONS*/
+
 /*First we create a function that creates new li items on a list to add error messages on to the errors log div*/ 
+
 function createMenuItem(error) {
     let newListItem = document.createElement('li');
     newListItem.textContent = error;
     return newListItem;
 }
+
 /*the function performs a validation for the fields and the DOM elements as
 well*/
+
 function submitLoginForm(e) {    
     e.preventDefault();
     errorLoginContainer.classList.toggle('hidden');
