@@ -30,9 +30,7 @@ header p {
     background-color: yellow;    
 }
 /*MAIN BODY*/
-form {
-    /* display:flex;
-    flex-direction: column; */
+form {    
     padding: 20px 0px 70px 0px;
     background-color:antiquewhite;    
 }
