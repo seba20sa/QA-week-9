@@ -4,13 +4,18 @@ var formLoginPassword = document.getElementById('form-login-password');
 var errorLoginContainer = document.getElementById('error-log-container');
 var formLoginButton = document.getElementById('login-button');
 var listOfErrors = document.getElementById('list-of-errors');
-var labelsCounter = document.getElementsByTagName('label');
-var inputsCounter = document.getElementsByTagName('input');
-var buttonsCounter = document.getElementsByTagName('button');
-var formCounter = document.getElementsByTagName('form');
+var formCounter = Array.from(document.getElementsByTagName('form'));
+var labelsCounter = Array.from(document.getElementsByTagName('label'));
+var inputsCounter = Array.from(document.getElementsByTagName('input'));
+var buttonsCounter = Array.from(document.getElementsByTagName('button'));
+
 /*EVENT LISTENERS*/
 formLoginButton.addEventListener('click', submitLoginForm);
+/*event listener that bubles up from the field to the form*/
+
+
 /*FUNCTIONS*/
+
 /*First we create a function that creates new li items on a list to add error messages 
 on to the errors log div*/
 function createMenuItem(error) {
@@ -18,20 +23,26 @@ function createMenuItem(error) {
     newListItem.textContent = error;
     return newListItem;
 }
-/*the function performs a validation for the fields and the DOM elements as well*/
+
+/*funtion that toggles the error message class when switching from focus to blur*/
+
+/*the function performs a validation for the fields and the DOM elements as well, also it checks if 
+there is a previous error log from before if it is a prvious one it overwrites that one.*/
 function submitLoginForm(e) {    
     e.preventDefault();
     errorLoginContainer.classList.toggle('hidden');
     /*validation for elements*/
+    /*add extra validations for the fields to match the requirements and include the extra errors
+    modify de if else so it only shows the correct error at a time*/
     if (
-        formCounter && labelsCounter.length === 2 && inputsCounter.length === 2 
+        formCounter.length === 1 && labelsCounter.length === 2 && inputsCounter.length === 2 
         && buttonsCounter.length === 2 && formLoginEmail.value.length !==0
         && formLoginEmail.value.includes('@') && formLoginEmail.value.includes('.com')  
         && formLoginPassword.value.length !== 0 
         ) {
-            listOfErrors.appendChild(createMenuItem('Everything is fine')); 
+            listOfErrors.appendChild(createMenuItem('Every validation has passed')); 
         } else {
-            if (!formCounter) {
+            if (formCounter.length === 0) {
                 listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
                 classList.toggle('error-message'); 
             }

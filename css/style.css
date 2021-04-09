@@ -67,7 +67,7 @@ form {
     background-color: aqua;
     padding: 10px 0px;
 }
-.error-message {
+.error-message, .error-message-shown {
     font-weight: bold;
     color: red;
 }

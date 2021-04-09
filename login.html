@@ -23,12 +23,18 @@
                     E-mail:
                 </label>
                 <input type="email" name="login-email" id="form-login-email">
+                <div id="login-error-email" class="error-message-shown">
+                    <p>E-mail must have a valid format</p>
+                </div>
             </div>
             <div class="field-container">
                 <label for="login-password">
                     Password:
                 </label>
-                <input type="password" name="login-password" id="form-login-password">                
+                <input type="password" name="login-password" id="form-login-password">
+                <div id="login-error-password" class="error-message-shown">
+                    <p>Password must have the correct format</p>
+                </div>                
             </div>
             <div id="form-buttons">
                 <button id="login-button" >Log in</button>                
