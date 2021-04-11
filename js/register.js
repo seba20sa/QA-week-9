@@ -116,7 +116,14 @@ function submitRegisterForm(e) {
         && formRegisterSecondPassword.value.length !== 0 
         && formRegisterFirstPassword.value === formRegisterSecondPassword.value
         ) {
-            listOfErrors.appendChild(createMenuItem('Every validation has passed')); 
+            listOfErrors.appendChild(createMenuItem('Every validation has passed'));
+            /*if all the validations pass, the function performs the request*/
+            fetch(
+                `https://jsonplaceholder.typicode.com/users?email=${formRegisterEmail.value}`, 
+                {method: 'get'}
+            )
+                .then(() => console.log('mail has been sent'))
+                .catch(() => console.log('Something went wrong')) 
         } else {            
             if (formCounter.length === 0) {
                 listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).

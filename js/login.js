@@ -86,7 +86,14 @@ function submitLoginForm(e) {
         && !formLoginPassword.value.match(/^[0-9]+$/) && !formLoginPassword.value.match(/^[a-zA-Z]+$/)
         && formLoginPassword.value.length >= 8 
         ) {
-            listOfErrors.appendChild(createMenuItem('Every validation has passed')); 
+            listOfErrors.appendChild(createMenuItem('Every validation has passed'));
+            /*if all the validations pass, the function performs the request*/
+            fetch(
+                    `https://jsonplaceholder.typicode.com/users?email=${formLoginEmail.value}`, 
+                    {method: 'get'}
+                )
+                    .then(() => console.log('mail has been sent'))
+                    .catch(() => console.log('Something went wrong')) 
         } else {
             if (formCounter.length === 0) {
                 listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
@@ -145,4 +152,7 @@ function submitLoginForm(e) {
                 listOfErrors.appendChild(createMenuItem('Password has the correct format'));
             }
         }
+
 }
+
+/*MAIL REQUEST*/
