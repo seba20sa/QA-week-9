@@ -81,7 +81,8 @@ function submitLoginForm(e) {
         formCounter.length === 1 && labelsCounter.length === 2 && inputsCounter.length === 2 
         && buttonsCounter.length === 2 && formLoginEmail.value.length !==0
         && formLoginEmail.value.includes('@') && formLoginEmail.value.includes('.com')  
-        && formLoginPassword.value.length !== 0 
+        && !formLoginPassword.value.match(/^[0-9]+$/) && !formLoginPassword.value.match(/^[a-zA-Z]+$/)
+        && formLoginPassword.value.length >= 8 
         ) {
             listOfErrors.appendChild(createMenuItem('Every validation has passed')); 
         } else {
@@ -133,7 +134,7 @@ function submitLoginForm(e) {
                 listOfErrors.appendChild(createMenuItem('Password is invalid')).
                 classList.toggle('error-message');
             } else {
-                listOfErrors.appendChild(createMenuItem('Password is not empty'));
+                listOfErrors.appendChild(createMenuItem('Password has the correct format'));
             }
         }
 }

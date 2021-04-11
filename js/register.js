@@ -29,6 +29,11 @@ formRegisterName.addEventListener('blur', checkRegisterNameError);
 formRegisterEmail.addEventListener('focus', hideRegisterEmailError);
 formRegisterEmail.addEventListener('blur', checkRegisterEmailError);
 
+formRegisterFirstPassword.addEventListener('focus', hideRegisterFirstPasswordError);
+formRegisterFirstPassword.addEventListener('blur', checkRegisterFirstPasswordError);
+
+formRegisterSecondPassword.addEventListener('focus', hideRegisterSecondPasswordError);
+formRegisterSecondPassword.addEventListener('blur', checkRegisterSecondPasswordError);
 
 /*FUNCTIONS*/
 /*First we create a function that creates new li items on a list to add error messages 
@@ -62,6 +67,36 @@ function checkRegisterEmailError(e) {
         registerErrorEmail.className = 'error-message-shown';
     }   
 }
+/*first password*/
+function hideRegisterFirstPasswordError(e) {
+    registerErrorFirstPassword.className = 'hidden';
+}
+function checkRegisterFirstPasswordError(e) {
+    if ( formRegisterFirstPassword.value.match(/^[0-9]+$/) 
+        || formRegisterFirstPassword.value.match(/^[a-zA-Z]+$/) 
+        || formRegisterFirstPassword.value.length < 8
+        ) {
+            registerErrorFirstPassword.className = 'error-message-shown';
+    }  else  {
+        registerErrorFirstPassword.className = 'hidden';
+    }
+}
+
+function hideRegisterSecondPasswordError(e) {
+    registerErrorSecondPassword.className = 'hidden';
+}
+function checkRegisterSecondPasswordError(e) {
+    if ( 
+        formRegisterSecondPassword.value.match(/^[0-9]+$/) 
+        || formRegisterSecondPassword.value.match(/^[a-zA-Z]+$/) 
+        || formRegisterSecondPassword.value.length < 8
+        || formRegisterFirstPassword.value !== formRegisterSecondPassword.value
+        ) {
+            registerErrorSecondPassword.className = 'error-message-shown';
+    }  else  {
+        registerErrorFirstPassword.className = 'hidden';
+    }
+}
 
 
 /*the function performs a validation for the fields and the DOM elements as well*/
@@ -75,7 +110,9 @@ function submitRegisterForm(e) {
         && formRegisterName.value.length >= 6 && formRegisterName.value.includes(' ') 
         && formRegisterEmail.value.length !==0
         && formRegisterEmail.value.includes('@') && formRegisterEmail.value.includes('.com') 
-        && formRegisterFirstPassword.value.length !==0 
+        && !formRegisterFirstPassword.value.match(/^[0-9]+$/) 
+        && !formRegisterFirstPassword.value.match(/^[a-zA-Z]+$/)
+        && formRegisterFirstPassword.value.length >= 8 
         && formRegisterSecondPassword.value.length !== 0 
         && formRegisterFirstPassword.value === formRegisterSecondPassword.value
         ) {
@@ -131,17 +168,28 @@ function submitRegisterForm(e) {
                 listOfErrors.appendChild(createMenuItem('The e-mail format is incorrect')).
                 classList.toggle('error-message');
             }
-            if (formRegisterFirstPassword.value.length === 0) {
-                listOfErrors.appendChild(createMenuItem('The first password field is empty')).
+            if ( 
+                formRegisterFirstPassword.value.match(/^[0-9]+$/) 
+                || formRegisterFirstPassword.value.match(/^[a-zA-Z]+$/)
+                || formRegisterFirstPassword.value.length < 8 
+                ) {
+                listOfErrors.appendChild(createMenuItem('The first password format is incorrect')).
                 classList.toggle('error-message');
             } else {
-                listOfErrors.appendChild(createMenuItem('The first password field is not empty')); 
+                listOfErrors.appendChild(createMenuItem('The first password format is correct')); 
             }
-            if (formRegisterSecondPassword.value.length === 0) {
-                listOfErrors.appendChild(createMenuItem('The second password field is empty')).
+            if (
+                formRegisterSecondPassword.value.match(/^[0-9]+$/) 
+                || formRegisterSecondPassword.value.match(/^[a-zA-Z]+$/)
+                || formRegisterSecondPassword.value.length < 8
+                || formRegisterFirstPassword.value !== formRegisterSecondPassword.value
+            ) {
+                listOfErrors.appendChild(createMenuItem('The second password format is invalid')).
                 classList.toggle('error-message');
             } else {
-                listOfErrors.appendChild(createMenuItem('The second password field is not empty')); 
+                listOfErrors.appendChild(
+                    createMenuItem('The second password format is correct and passwords match')
+                ); 
             }
             if (formRegisterFirstPassword.value === formRegisterSecondPassword.value) {
                 listOfErrors.appendChild(createMenuItem('Passwords match'));                 
