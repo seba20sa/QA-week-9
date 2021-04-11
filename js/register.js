@@ -18,23 +18,19 @@ var formCounter = Array.from(document.getElementsByTagName('form'));
 var labelsCounter = Array.from(document.getElementsByTagName('label'));
 var inputsCounter = Array.from(document.getElementsByTagName('input'));
 var buttonsCounter = Array.from(document.getElementsByTagName('button'));
-
+var cleanFormLink = document.getElementById('clean-form-link');
 /*LISTENERS*/
 formRegisterSubmitButton.addEventListener('click', submitRegisterForm);
 formRegisterResetButton.addEventListener('click', resetRegisterForm);
-
+cleanFormLink.addEventListener('click', cleanFormFunction);
 formRegisterName.addEventListener('focus', hideRegisterNameError);
 formRegisterName.addEventListener('blur', checkRegisterNameError);
-
 formRegisterEmail.addEventListener('focus', hideRegisterEmailError);
 formRegisterEmail.addEventListener('blur', checkRegisterEmailError);
-
 formRegisterFirstPassword.addEventListener('focus', hideRegisterFirstPasswordError);
 formRegisterFirstPassword.addEventListener('blur', checkRegisterFirstPasswordError);
-
 formRegisterSecondPassword.addEventListener('focus', hideRegisterSecondPasswordError);
 formRegisterSecondPassword.addEventListener('blur', checkRegisterSecondPasswordError);
-
 /*FUNCTIONS*/
 /*First we create a function that creates new li items on a list to add error messages 
 on to the errors log div*/
@@ -43,8 +39,6 @@ function createMenuItem(error) {
     newListItem.textContent = error;
     return newListItem;
 }
-
-
 /*toggle function that shows the error message and validates name*/
 function hideRegisterNameError(e) {
     registerErrorName.className = 'hidden';
@@ -97,8 +91,6 @@ function checkRegisterSecondPasswordError(e) {
         registerErrorFirstPassword.className = 'hidden';
     }
 }
-
-
 /*the function performs a validation for the fields and the DOM elements as well*/
 function submitRegisterForm(e) {    
     e.preventDefault();
@@ -206,4 +198,9 @@ function submitRegisterForm(e) {
 }
 function resetRegisterForm(e) {
     formCounter.reset();
+}
+/*CLEAN FORM*/
+function cleanFormFunction(e) {    
+    listOfErrors.innerHTML = '';
+    errorLoginContainer.classList.toggle('hidden');
 }

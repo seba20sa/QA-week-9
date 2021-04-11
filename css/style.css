@@ -81,6 +81,19 @@ form {
     margin-left: -20px;
     list-style-type: none;
 }
+#error-log-cleaner {
+    margin-left: 15px;
+}
+#error-log-cleaner a {    
+    text-decoration: none;
+    font-weight: bold;
+}
+#error-log-cleaner a:hover {    
+    text-decoration: underline;
+    
+}
+
+
 /*FOOTER*/
 footer  {
     padding: 20px 0px 90px 0px;
