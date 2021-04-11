@@ -1,6 +1,8 @@
 /*VARIABLES*/ 
 var formLoginEmail = document.getElementById('form-login-email');
+var loginErrorEmail = document.getElementById('login-error-email');
 var formLoginPassword = document.getElementById('form-login-password');
+var loginErrorPassword = document.getElementById('login-error-password');
 var errorLoginContainer = document.getElementById('error-log-container');
 var formLoginButton = document.getElementById('login-button');
 var listOfErrors = document.getElementById('list-of-errors');
@@ -8,9 +10,21 @@ var formCounter = Array.from(document.getElementsByTagName('form'));
 var labelsCounter = Array.from(document.getElementsByTagName('label'));
 var inputsCounter = Array.from(document.getElementsByTagName('input'));
 var buttonsCounter = Array.from(document.getElementsByTagName('button'));
+// var LoginButtonCounter = 0;
+
 
 /*EVENT LISTENERS*/
 formLoginButton.addEventListener('click', submitLoginForm);
+
+formLoginEmail.addEventListener('focus', hideLoginEmailError);
+formLoginEmail.addEventListener('blur', checkLoginEmail);
+
+formLoginPassword.addEventListener('focus', hideLoginPasswordError);
+formLoginPassword.addEventListener('blur', checkLoginPassword);
+
+
+
+
 /*event listener that bubles up from the field to the form*/
 
 
@@ -24,13 +38,42 @@ function createMenuItem(error) {
     return newListItem;
 }
 
-/*funtion that toggles the error message class when switching from focus to blur*/
 
+
+/*function that toggles the error message class when switching from focus to blur*/
+function hideLoginEmailError(e) {
+    loginErrorEmail.className = 'hidden';
+}
+function checkLoginEmail(e) {
+    if ( formLoginEmail.value.includes('@') && formLoginEmail.value.includes('.com') ) {
+        loginErrorEmail.className = 'hidden';
+    } else {
+        loginErrorEmail.className = 'error-message-shown';
+    }   
+}
+
+function hideLoginPasswordError(e) {
+    loginErrorPassword.className = 'hidden';
+}
+function checkLoginPassword(e) {
+    if ( formLoginPassword.value.match(/^[0-9]+$/) 
+        || formLoginPassword.value.match(/^[a-zA-Z]+$/) 
+        || formLoginPassword.value.length < 8
+        ) {
+        loginErrorPassword.className = 'error-message-shown';
+    }  else  {
+        loginErrorPassword.className = 'hidden';
+    }
+}
+// console.log(LoginButtonCounter);
 /*the function performs a validation for the fields and the DOM elements as well, also it checks if 
 there is a previous error log from before if it is a prvious one it overwrites that one.*/
-function submitLoginForm(e) {    
+function submitLoginForm(e) {
+    // LoginButtonCounter = LoginButtonCounter + 1;    
     e.preventDefault();
     errorLoginContainer.classList.toggle('hidden');
+    
+    
     /*validation for elements*/
     /*add extra validations for the fields to match the requirements and include the extra errors
     modify de if else so it only shows the correct error at a time*/

@@ -22,24 +22,36 @@
                     Name:
                 </label>
                 <input type="text" name="name" id="form-register-name">
+                <div id="register-error-name" class="hidden">
+                    <p>Name must be at least 6 characters long and have a space</p>
+                </div>
             </div>
             <div class="field-container">
                 <label for="email">
                     E-mail:
                 </label>
                 <input type="text" name="email" id="form-register-email">
+                <div id="register-error-email" class="hidden">
+                    <p>E-mail must have a valid format</p>
+                </div>
             </div>
             <div class="field-container">
                 <label for="first-password">
                     Create a password:
                 </label>
                 <input type="password" name="first-password" id="form-register-first-password">
+                <div id="register-error-first-password" class="hidden">
+                    <p>Password must have the correct format</p>
+                </div>
             </div>
             <div class="field-container">
                 <label for="second-password">
                     Confirm password:
                 </label>
-                <input type="password" name="second-password" id="form-register-second-password">                
+                <input type="password" name="second-password" id="form-register-second-password">
+                <div id="register-error-second-password" class="hidden">
+                    <p>Passwords must have the correct format and match</p>
+                </div>                
             </div>
             <div id="form-buttons">
                 <button id="reset-fields-button">Reset fields</button>

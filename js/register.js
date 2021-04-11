@@ -3,18 +3,33 @@ var formRegisterName = document.getElementById('form-register-name');
 var formRegisterEmail = document.getElementById('form-register-email');
 var formRegisterFirstPassword = document.getElementById('form-register-first-password');
 var formRegisterSecondPassword = document.getElementById('form-register-second-password');
+/*register*/
+var registerErrorName = document.getElementById('register-error-name');
+var registerErrorEmail = document.getElementById('register-error-email');
+var registerErrorFirstPassword = document.getElementById('register-error-first-password');
+var registerErrorSecondPassword = document.getElementById('register-error-second-password');
+/*containers*/
 var errorLoginContainer = document.getElementById('error-log-container');
 var formRegisterSubmitButton = document.getElementById('submit-button');
 var formRegisterResetButton = document.getElementById('reset-fields-button');
-var registerForm = document.getElementsByTagName('form');
 var listOfErrors = document.getElementById('list-of-errors');
-var labelsCounter = document.getElementsByTagName('label');
-var inputsCounter = document.getElementsByTagName('input');
-var buttonsCounter = document.getElementsByTagName('button');
-var formCounter = document.getElementsByTagName('form');
-/*EVENT LISTENERS*/
+/*counters*/
+var formCounter = Array.from(document.getElementsByTagName('form'));
+var labelsCounter = Array.from(document.getElementsByTagName('label'));
+var inputsCounter = Array.from(document.getElementsByTagName('input'));
+var buttonsCounter = Array.from(document.getElementsByTagName('button'));
+
+/*LISTENERS*/
 formRegisterSubmitButton.addEventListener('click', submitRegisterForm);
 formRegisterResetButton.addEventListener('click', resetRegisterForm);
+
+formRegisterName.addEventListener('focus', hideRegisterNameError);
+formRegisterName.addEventListener('blur', checkRegisterNameError);
+
+formRegisterEmail.addEventListener('focus', hideRegisterEmailError);
+formRegisterEmail.addEventListener('blur', checkRegisterEmailError);
+
+
 /*FUNCTIONS*/
 /*First we create a function that creates new li items on a list to add error messages 
 on to the errors log div*/
@@ -23,14 +38,41 @@ function createMenuItem(error) {
     newListItem.textContent = error;
     return newListItem;
 }
+
+
+/*toggle function that shows the error message and validates name*/
+function hideRegisterNameError(e) {
+    registerErrorName.className = 'hidden';
+}
+function checkRegisterNameError(e) {
+    if ( formRegisterName.value.includes(' ') && formRegisterName.value.length >= 6) {
+        registerErrorName.className = 'hidden';
+    } else {
+        registerErrorName.className = 'error-message-shown';
+    }   
+}
+/*email*/
+function hideRegisterEmailError(e) {
+    registerErrorEmail.className = 'hidden';
+}
+function checkRegisterEmailError(e) {
+    if ( formRegisterEmail.value.includes('@') && formRegisterEmail.value.includes('.com') ) {
+        registerErrorEmail.className = 'hidden';
+    } else {
+        registerErrorEmail.className = 'error-message-shown';
+    }   
+}
+
+
 /*the function performs a validation for the fields and the DOM elements as well*/
 function submitRegisterForm(e) {    
     e.preventDefault();
     errorLoginContainer.classList.toggle('hidden');
     /*validation for elements*/
     if ( 
-        formCounter && labelsCounter.length === 4 && inputsCounter.length === 4 
-        && buttonsCounter.length === 3 && formRegisterName.value.length !==0 
+        formCounter.length === 1 && labelsCounter.length === 4 && inputsCounter.length === 4 
+        && buttonsCounter.length === 3 
+        && formRegisterName.value.length >= 6 && formRegisterName.value.includes(' ') 
         && formRegisterEmail.value.length !==0
         && formRegisterEmail.value.includes('@') && formRegisterEmail.value.includes('.com') 
         && formRegisterFirstPassword.value.length !==0 
@@ -73,11 +115,11 @@ function submitRegisterForm(e) {
                 listOfErrors.appendChild(createMenuItem('There are ' 
                 + buttonsCounter.length + ' buttons in the form'));
             }
-            if (formRegisterName.value.length === 0) {
-                listOfErrors.appendChild(createMenuItem('The Name field is empty')).
+            if (formRegisterName.value.length < 6 || !formRegisterName.value.includes(' ')) {
+                listOfErrors.appendChild(createMenuItem('The Name input does not have the correct format')).
                 classList.toggle('error-message');
             } else {
-                listOfErrors.appendChild(createMenuItem('The Name field is not empty')); 
+                listOfErrors.appendChild(createMenuItem('The Name input has the correct format')); 
             }
             if (formRegisterEmail.value.length === 0) {
                 listOfErrors.appendChild(createMenuItem('The e-mail field is empty')).
@@ -110,5 +152,5 @@ function submitRegisterForm(e) {
         }
 }
 function resetRegisterForm(e) {
-    registerForm.reset();
+    formCounter.reset();
 }
