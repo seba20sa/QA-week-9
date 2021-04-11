@@ -118,9 +118,11 @@ function submitRegisterForm(e) {
         ) {
             listOfErrors.appendChild(createMenuItem('Every validation has passed')); 
         } else {            
-            if (!formCounter) {
+            if (formCounter.length === 0) {
                 listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
                 classList.toggle('error-message'); 
+            } else {
+                listOfErrors.appendChild(createMenuItem('There is a form in the DOM'))
             }
             if (labelsCounter.length === 0) {
                 listOfErrors.appendChild(createMenuItem('There are no labels in the form')).

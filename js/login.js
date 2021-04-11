@@ -1,8 +1,10 @@
 /*VARIABLES*/ 
 var formLoginEmail = document.getElementById('form-login-email');
-var loginErrorEmail = document.getElementById('login-error-email');
 var formLoginPassword = document.getElementById('form-login-password');
+
+var loginErrorEmail = document.getElementById('login-error-email');
 var loginErrorPassword = document.getElementById('login-error-password');
+
 var errorLoginContainer = document.getElementById('error-log-container');
 var formLoginButton = document.getElementById('login-button');
 var listOfErrors = document.getElementById('list-of-errors');
@@ -89,6 +91,8 @@ function submitLoginForm(e) {
             if (formCounter.length === 0) {
                 listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
                 classList.toggle('error-message'); 
+            } else {
+                listOfErrors.appendChild(createMenuItem('There is a form in the DOM'))
             }
             if (labelsCounter.length === 0) {
                 listOfErrors.appendChild(createMenuItem('There are no labels in the form')).
@@ -119,18 +123,22 @@ function submitLoginForm(e) {
             }  else if (buttonsCounter.length >= 2) {
                 listOfErrors.appendChild(createMenuItem('There are ' 
                 + buttonsCounter.length + ' buttons in the form'));
-            }
-            if (formLoginEmail.value.length === 0) {              
-                listOfErrors.appendChild(createMenuItem('The e-mail field is empty')).
-                classList.toggle('error-message');        
-            } else {
-                listOfErrors.appendChild(createMenuItem('The e-mail field is not empty'));                
-            }
-            if (!formLoginEmail.value.includes('@') || !formLoginEmail.value.includes('.com')) {
+            }            
+            if (
+                formLoginEmail.value.length === 0 
+                || !formLoginEmail.value.includes('@') 
+                || !formLoginEmail.value.includes('.com')
+            ) {
                 listOfErrors.appendChild(createMenuItem('The e-mail format is incorrect')).
                 classList.toggle('error-message');
+            } else {
+                listOfErrors.appendChild(createMenuItem('The e-mail format is correct'))
             }
-            if (formLoginPassword.value.length === 0) {
+            if (
+                formLoginPassword.value.match(/^[0-9]+$/) 
+                || formLoginPassword.value.match(/^[a-zA-Z]+$/)
+                || formLoginPassword.value.length < 8
+            ) {
                 listOfErrors.appendChild(createMenuItem('Password is invalid')).
                 classList.toggle('error-message');
             } else {
