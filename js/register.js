@@ -81,7 +81,7 @@ function checkRegisterFirstPasswordError(e) {
         registerErrorFirstPassword.className = 'hidden';
     }
 }
-
+/*second password*/
 function hideRegisterSecondPasswordError(e) {
     registerErrorSecondPassword.className = 'hidden';
 }
@@ -157,16 +157,12 @@ function submitRegisterForm(e) {
                 classList.toggle('error-message');
             } else {
                 listOfErrors.appendChild(createMenuItem('The Name input has the correct format')); 
-            }
-            if (formRegisterEmail.value.length === 0) {
-                listOfErrors.appendChild(createMenuItem('The e-mail field is empty')).
-                classList.toggle('error-message');
-            } else {
-                listOfErrors.appendChild(createMenuItem('The e-mail field is not empty')); 
-            }
+            }            
             if (!formRegisterEmail.value.includes('@') || !formRegisterEmail.value.includes('.com')) {
                 listOfErrors.appendChild(createMenuItem('The e-mail format is incorrect')).
                 classList.toggle('error-message');
+            } else {
+                listOfErrors.appendChild(createMenuItem('The e-mail format is correct'))
             }
             if ( 
                 formRegisterFirstPassword.value.match(/^[0-9]+$/) 
