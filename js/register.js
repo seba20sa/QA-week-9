@@ -117,14 +117,16 @@ function submitRegisterForm(e) {
             listOfResults.appendChild(createMenuItem('The Name is: '+formRegisterName.value));
             listOfResults.appendChild(createMenuItem('The e-mail is: '+formRegisterEmail.value));
             listOfResults.appendChild(createMenuItem('The first is: '+formRegisterFirstPassword.value));
-            listOfResults.appendChild(createMenuItem('The second password is: '+formRegisterSecondPassword.value));
+            listOfResults.appendChild(
+                createMenuItem('The second password is: '+formRegisterSecondPassword.value)
+                );
             /*if all the validations pass, the function performs the request*/
             fetch(
-                `https://jsonplaceholder.typicode.com/users?email=${formRegisterEmail.value}`, 
+                `https://jsonplaceholder.typicode.com/users?email=randomEmail@gmail.com`, 
                 {method: 'get'}
             )
-                .then(() => console.log('mail has been sent'))
-                .catch(() => console.log('Something went wrong')) 
+                .then(() => console.log('mail has been recieved'))
+                .catch(() => console.log('could not get requested URL')) 
         } else {            
             if (formCounter.length === 0) {
                 listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
@@ -200,13 +202,16 @@ function submitRegisterForm(e) {
             ) {
                 listOfErrors.appendChild(createMenuItem('The second password format is invalid')).
                 classList.toggle('error-message');
-                listOfResults.appendChild(createMenuItem('The second password is: '+formRegisterSecondPassword.value)).
-                classList.toggle('error-message');
+                listOfResults.appendChild(
+                    createMenuItem('The second password is: '+
+                    formRegisterSecondPassword.value)).classList.toggle('error-message');
             } else {
                 listOfErrors.appendChild(
                     createMenuItem('The second password format is correct and passwords match')
                 );
-                listOfResults.appendChild(createMenuItem('The second password is: '+formRegisterSecondPassword.value)); 
+                listOfResults.appendChild(createMenuItem(
+                    'The second password is: '+formRegisterSecondPassword.value)
+                ); 
             }
             if (formRegisterFirstPassword.value === formRegisterSecondPassword.value) {
                 listOfErrors.appendChild(createMenuItem('Passwords match'));                 
