@@ -82,7 +82,8 @@ form {
     list-style-type: none;
 }
 #error-log-cleaner {
-    margin-left: 15px;
+    margin-left: 20px;
+    border-top: solid 3px green;
 }
 #error-log-cleaner a {    
     text-decoration: none;
@@ -92,8 +93,6 @@ form {
     text-decoration: underline;
     
 }
-
-
 /*FOOTER*/
 footer  {
     padding: 20px 0px 90px 0px;

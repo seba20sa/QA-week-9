@@ -22,7 +22,7 @@
                 <label for="login-email">
                     E-mail:
                 </label>
-                <input type="email" name="login-email" id="form-login-email">
+                <input type="email" name="email" id="form-login-email">
                 <div id="login-error-email" class="hidden">
                     <p>E-mail must have a valid format</p>
                 </div>
@@ -42,14 +42,15 @@
         </form>
         <div id="error-log-container" class="hidden">
             <h2>Validation report: </h2>
-            <ul id="list-of-errors">
-            </ul>
+            <ul id="list-of-errors"></ul>
+            <h2>The form data is: </h2>
+            <ul id="list-of-results"></ul>
             <div id="error-log-cleaner">
                 <p>If you want to reset the validations log to perofm a new test click on finish</p>
                 <a  id="clean-form-link">
                     <p>Finish</p>
                 </a>
-            </div>
+            </div>            
         </div>
         <footer>
             <div id="final-credits-bar">

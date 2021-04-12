@@ -6,11 +6,13 @@ var loginErrorPassword = document.getElementById('login-error-password');
 var errorLoginContainer = document.getElementById('error-log-container');
 var formLoginButton = document.getElementById('login-button');
 var listOfErrors = document.getElementById('list-of-errors');
+var listOfResults = document.getElementById('list-of-results');
 var formCounter = Array.from(document.getElementsByTagName('form'));
 var labelsCounter = Array.from(document.getElementsByTagName('label'));
 var inputsCounter = Array.from(document.getElementsByTagName('input'));
 var buttonsCounter = Array.from(document.getElementsByTagName('button'));
 var cleanFormLink = document.getElementById('clean-form-link');
+
 
 
 /*EVENT LISTENERS*/
@@ -69,6 +71,8 @@ function submitLoginForm(e) {
             && formLoginPassword.value.length >= 8 
             ) {
                 listOfErrors.appendChild(createMenuItem('Every validation has passed'));
+                listOfResults.appendChild(createMenuItem('The email is: '+formLoginEmail.value));
+                listOfResults.appendChild(createMenuItem('Password is: '+formLoginPassword.value));
                 /*if all the validations pass, the function performs the request*/
                 fetch(
                         `https://jsonplaceholder.typicode.com/users?email=${formLoginEmail.value}`, 
@@ -79,9 +83,9 @@ function submitLoginForm(e) {
             } else {
                 if (formCounter.length === 0) {
                     listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
-                    classList.toggle('error-message'); 
+                    classList.toggle('error-message');                     
                 } else {
-                    listOfErrors.appendChild(createMenuItem('There is a form in the DOM'))
+                    listOfErrors.appendChild(createMenuItem('There is a form in the DOM'));
                 }
                 if (labelsCounter.length === 0) {
                     listOfErrors.appendChild(createMenuItem('There are no labels in the form')).
@@ -108,7 +112,7 @@ function submitLoginForm(e) {
                     classList.toggle('error-message'); 
                 } else if (buttonsCounter.length < 2) {
                     listOfErrors.appendChild(createMenuItem('There are missing buttons in the form')).
-                    classList.toggle('error-message');; 
+                    classList.toggle('error-message'); 
                 }  else if (buttonsCounter.length >= 2) {
                     listOfErrors.appendChild(createMenuItem('There are ' 
                     + buttonsCounter.length + ' buttons in the form'));
@@ -120,8 +124,11 @@ function submitLoginForm(e) {
                 ) {
                     listOfErrors.appendChild(createMenuItem('The e-mail format is incorrect')).
                     classList.toggle('error-message');
+                    listOfResults.appendChild(createMenuItem('The email is: '+formLoginEmail.value)).
+                    classList.toggle('error-message');
                 } else {
-                    listOfErrors.appendChild(createMenuItem('The e-mail format is correct'))
+                    listOfErrors.appendChild(createMenuItem('The e-mail format is correct'));
+                    listOfResults.appendChild(createMenuItem('The email is: '+formLoginEmail.value));
                 }
                 if (
                     formLoginPassword.value.match(/^[0-9]+$/) 
@@ -130,8 +137,11 @@ function submitLoginForm(e) {
                 ) {
                     listOfErrors.appendChild(createMenuItem('Password is invalid')).
                     classList.toggle('error-message');
+                    listOfResults.appendChild(createMenuItem('Password is: '+formLoginPassword.value)).
+                    classList.toggle('error-message');
                 } else {
                     listOfErrors.appendChild(createMenuItem('Password has the correct format'));
+                    listOfResults.appendChild(createMenuItem('Password is: '+formLoginPassword.value));
                 }
             }
     
@@ -143,5 +153,6 @@ function submitLoginForm(e) {
 /*CLEAN FORM*/
 function cleanFormFunction(e) {    
     listOfErrors.innerHTML = '';
+    listOfResults.innerHTML = '';
     errorLoginContainer.classList.toggle('hidden');
 }
