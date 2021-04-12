@@ -54,85 +54,91 @@ function checkLoginPassword(e) {
 }
 /*the function performs a validation for the fields and the DOM elements as well, also it checks if 
 there is a previous error log from before if it is a prvious one it overwrites that one.*/
-function submitLoginForm(e) {       
-    e.preventDefault();
-    errorLoginContainer.classList.toggle('hidden');
-    /*validation for elements*/
-    /*add extra validations for the fields to match the requirements and include the extra errors
-    modify de if else so it only shows the correct error at a time*/
-    if (
-        formCounter.length === 1 && labelsCounter.length === 2 && inputsCounter.length === 2 
-        && buttonsCounter.length === 2 && formLoginEmail.value.length !==0
-        && formLoginEmail.value.includes('@') && formLoginEmail.value.includes('.com')  
-        && !formLoginPassword.value.match(/^[0-9]+$/) && !formLoginPassword.value.match(/^[a-zA-Z]+$/)
-        && formLoginPassword.value.length >= 8 
-        ) {
-            listOfErrors.appendChild(createMenuItem('Every validation has passed'));
-            /*if all the validations pass, the function performs the request*/
-            fetch(
-                    `https://jsonplaceholder.typicode.com/users?email=${formLoginEmail.value}`, 
-                    {method: 'get'}
-                )
-                    .then(() => console.log('mail has been sent'))
-                    .catch(() => console.log('Something went wrong')) 
-        } else {
-            if (formCounter.length === 0) {
-                listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
-                classList.toggle('error-message'); 
-            } else {
-                listOfErrors.appendChild(createMenuItem('There is a form in the DOM'))
-            }
-            if (labelsCounter.length === 0) {
-                listOfErrors.appendChild(createMenuItem('There are no labels in the form')).
-                classList.toggle('error-message'); 
-            } else if (labelsCounter.length < 2) {
-                listOfErrors.appendChild(createMenuItem('There are missing labels in the form')).
-                classList.toggle('error-message'); 
-            }  else if (labelsCounter.length >= 2) {
-                listOfErrors.appendChild(createMenuItem('There are ' 
-                + labelsCounter.length + ' labels in the form'));
-            }
-            if (inputsCounter.length === 0) {
-                listOfErrors.appendChild(createMenuItem('There are no inputs in the form')).
-                classList.toggle('error-message'); 
-            } else if (inputsCounter.length < 2) {
-                listOfErrors.appendChild(createMenuItem('There are missing inputs in the form')).
-                classList.toggle('error-message'); 
-            }  else if (inputsCounter.length >= 2) {
-                listOfErrors.appendChild(createMenuItem('There are ' 
-                + inputsCounter.length + ' inputs in the form'));
-            }
-            if (buttonsCounter.length === 0) {
-                listOfErrors.appendChild(createMenuItem('There are no buttons in the form')).
-                classList.toggle('error-message'); 
-            } else if (buttonsCounter.length < 2) {
-                listOfErrors.appendChild(createMenuItem('There are missing buttons in the form')).
-                classList.toggle('error-message');; 
-            }  else if (buttonsCounter.length >= 2) {
-                listOfErrors.appendChild(createMenuItem('There are ' 
-                + buttonsCounter.length + ' buttons in the form'));
-            }            
-            if (
-                formLoginEmail.value.length === 0 
-                || !formLoginEmail.value.includes('@') 
-                || !formLoginEmail.value.includes('.com')
+function submitLoginForm(e) {         
+    
+    /*validates that there is not a previous list of error*/
+    if (listOfErrors.innerHTML.trim() === "") {        
+        e.preventDefault();
+        errorLoginContainer.classList.toggle('hidden');
+        if (
+            formCounter.length === 1 && labelsCounter.length === 2 && inputsCounter.length === 2 
+            && buttonsCounter.length === 2 && formLoginEmail.value.length !==0
+            && formLoginEmail.value.includes('@') && formLoginEmail.value.includes('.com')  
+            && !formLoginPassword.value.match(/^[0-9]+$/) 
+            && !formLoginPassword.value.match(/^[a-zA-Z]+$/)
+            && formLoginPassword.value.length >= 8 
             ) {
-                listOfErrors.appendChild(createMenuItem('The e-mail format is incorrect')).
-                classList.toggle('error-message');
+                listOfErrors.appendChild(createMenuItem('Every validation has passed'));
+                /*if all the validations pass, the function performs the request*/
+                fetch(
+                        `https://jsonplaceholder.typicode.com/users?email=${formLoginEmail.value}`, 
+                        {method: 'get'}
+                    )
+                        .then(() => console.log('mail has been sent'))
+                        .catch(() => console.log('Something went wrong')) 
             } else {
-                listOfErrors.appendChild(createMenuItem('The e-mail format is correct'))
+                if (formCounter.length === 0) {
+                    listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
+                    classList.toggle('error-message'); 
+                } else {
+                    listOfErrors.appendChild(createMenuItem('There is a form in the DOM'))
+                }
+                if (labelsCounter.length === 0) {
+                    listOfErrors.appendChild(createMenuItem('There are no labels in the form')).
+                    classList.toggle('error-message'); 
+                } else if (labelsCounter.length < 2) {
+                    listOfErrors.appendChild(createMenuItem('There are missing labels in the form')).
+                    classList.toggle('error-message'); 
+                }  else if (labelsCounter.length >= 2) {
+                    listOfErrors.appendChild(createMenuItem('There are ' 
+                    + labelsCounter.length + ' labels in the form'));
+                }
+                if (inputsCounter.length === 0) {
+                    listOfErrors.appendChild(createMenuItem('There are no inputs in the form')).
+                    classList.toggle('error-message'); 
+                } else if (inputsCounter.length < 2) {
+                    listOfErrors.appendChild(createMenuItem('There are missing inputs in the form')).
+                    classList.toggle('error-message'); 
+                }  else if (inputsCounter.length >= 2) {
+                    listOfErrors.appendChild(createMenuItem('There are ' 
+                    + inputsCounter.length + ' inputs in the form'));
+                }
+                if (buttonsCounter.length === 0) {
+                    listOfErrors.appendChild(createMenuItem('There are no buttons in the form')).
+                    classList.toggle('error-message'); 
+                } else if (buttonsCounter.length < 2) {
+                    listOfErrors.appendChild(createMenuItem('There are missing buttons in the form')).
+                    classList.toggle('error-message');; 
+                }  else if (buttonsCounter.length >= 2) {
+                    listOfErrors.appendChild(createMenuItem('There are ' 
+                    + buttonsCounter.length + ' buttons in the form'));
+                }            
+                if (
+                    formLoginEmail.value.length === 0 
+                    || !formLoginEmail.value.includes('@') 
+                    || !formLoginEmail.value.includes('.com')
+                ) {
+                    listOfErrors.appendChild(createMenuItem('The e-mail format is incorrect')).
+                    classList.toggle('error-message');
+                } else {
+                    listOfErrors.appendChild(createMenuItem('The e-mail format is correct'))
+                }
+                if (
+                    formLoginPassword.value.match(/^[0-9]+$/) 
+                    || formLoginPassword.value.match(/^[a-zA-Z]+$/)
+                    || formLoginPassword.value.length < 8
+                ) {
+                    listOfErrors.appendChild(createMenuItem('Password is invalid')).
+                    classList.toggle('error-message');
+                } else {
+                    listOfErrors.appendChild(createMenuItem('Password has the correct format'));
+                }
             }
-            if (
-                formLoginPassword.value.match(/^[0-9]+$/) 
-                || formLoginPassword.value.match(/^[a-zA-Z]+$/)
-                || formLoginPassword.value.length < 8
-            ) {
-                listOfErrors.appendChild(createMenuItem('Password is invalid')).
-                classList.toggle('error-message');
-            } else {
-                listOfErrors.appendChild(createMenuItem('Password has the correct format'));
-            }
-        }
+    
+    } else {
+        alert('make sure you finish with the validations first')
+        e.preventDefault();
+    }
 }
 /*CLEAN FORM*/
 function cleanFormFunction(e) {    

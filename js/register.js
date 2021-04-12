@@ -3,6 +3,7 @@ var formRegisterName = document.getElementById('form-register-name');
 var formRegisterEmail = document.getElementById('form-register-email');
 var formRegisterFirstPassword = document.getElementById('form-register-first-password');
 var formRegisterSecondPassword = document.getElementById('form-register-second-password');
+var mainForm = document.getElementById('main-form');
 /*register*/
 var registerErrorName = document.getElementById('register-error-name');
 var registerErrorEmail = document.getElementById('register-error-email');
@@ -93,9 +94,12 @@ function checkRegisterSecondPasswordError(e) {
 }
 /*the function performs a validation for the fields and the DOM elements as well*/
 function submitRegisterForm(e) {    
-    e.preventDefault();
-    errorLoginContainer.classList.toggle('hidden');
-    /*validation for elements*/
+    
+    /*validates that there is not a previous list of error*/
+    if (listOfErrors.innerHTML.trim() == "") {
+        e.preventDefault();
+        errorLoginContainer.classList.toggle('hidden');
+        /*validation for elements*/
     if ( 
         formCounter.length === 1 && labelsCounter.length === 4 && inputsCounter.length === 4 
         && buttonsCounter.length === 3 
@@ -165,7 +169,7 @@ function submitRegisterForm(e) {
             } else {
                 listOfErrors.appendChild(createMenuItem('The e-mail format is correct'))
             }
-            if ( 
+            if (
                 formRegisterFirstPassword.value.match(/^[0-9]+$/) 
                 || formRegisterFirstPassword.value.match(/^[a-zA-Z]+$/)
                 || formRegisterFirstPassword.value.length < 8 
@@ -175,8 +179,7 @@ function submitRegisterForm(e) {
             } else {
                 listOfErrors.appendChild(createMenuItem('The first password format is correct')); 
             }
-            if (
-                formRegisterSecondPassword.value.match(/^[0-9]+$/) 
+            if ( formRegisterSecondPassword.value.match(/^[0-9]+$/) 
                 || formRegisterSecondPassword.value.match(/^[a-zA-Z]+$/)
                 || formRegisterSecondPassword.value.length < 8
                 || formRegisterFirstPassword.value !== formRegisterSecondPassword.value
@@ -195,9 +198,15 @@ function submitRegisterForm(e) {
                 classList.toggle('error-message');
             }
         }
+    } else {
+        alert('make sure you finish with the validations first');
+        e.preventDefault();
+    }
 }
+
+
 function resetRegisterForm(e) {
-    formCounter.reset();
+    mainForm.reset();
 }
 /*CLEAN FORM*/
 function cleanFormFunction(e) {    
