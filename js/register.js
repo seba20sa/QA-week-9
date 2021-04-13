@@ -103,122 +103,122 @@ function submitRegisterForm(e) {
         e.preventDefault();
         errorLoginContainer.classList.toggle('hidden');
         /*validation for elements*/
-    if ( 
-        formCounter.length === 1 && labelsCounter.length === 4 && inputsCounter.length === 4 
-        && buttonsCounter.length === 3 
-        && formRegisterName.value.length >= 6 && formRegisterName.value.includes(' ') 
-        && formRegisterEmail.value.length !==0
-        && formRegisterEmail.value.includes('@') && formRegisterEmail.value.includes('.com') 
-        && !formRegisterFirstPassword.value.match(/^[0-9]+$/) 
-        && !formRegisterFirstPassword.value.match(/^[a-zA-Z]+$/)
-        && formRegisterFirstPassword.value.length >= 8 
-        && formRegisterSecondPassword.value.length !== 0 
-        && formRegisterFirstPassword.value === formRegisterSecondPassword.value
-        ) {
-            allValidationsComplete = true;            
-            listOfErrors.appendChild(createMenuItem('Every validation has passed'));
-            listOfResults.appendChild(createMenuItem('The Name is: '+formRegisterName.value));
-            listOfResults.appendChild(createMenuItem('The e-mail is: '+formRegisterEmail.value));
-            listOfResults.appendChild(createMenuItem('The first is: '+formRegisterFirstPassword.value));
-            listOfResults.appendChild(
-                createMenuItem('The second password is: '+formRegisterSecondPassword.value)
-                );            
-        } else {            
-            if (formCounter.length === 0) {
-                listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
-                classList.toggle('error-message'); 
-            } else {
-                listOfErrors.appendChild(createMenuItem('There is a form in the DOM'))
-            }
-            if (labelsCounter.length === 0) {
-                listOfErrors.appendChild(createMenuItem('There are no labels in the form')).
-                classList.toggle('error-message'); 
-            } else if (labelsCounter.length < 4) {
-                listOfErrors.appendChild(createMenuItem('There are missing labels in the form')).
-                classList.toggle('error-message'); 
-            }  else if (labelsCounter.length >= 4) {
-                listOfErrors.appendChild(createMenuItem('There are ' 
-                + labelsCounter.length + ' labels in the form'));
-            }
-            if (inputsCounter.length === 0) {
-                listOfErrors.appendChild(createMenuItem('There are no inputs in the form')).
-                classList.toggle('error-message'); 
-            } else if (inputsCounter.length < 4) {
-                listOfErrors.appendChild(createMenuItem('There are missing inputs in the form')).
-                classList.toggle('error-message'); 
-            }  else if (inputsCounter.length >= 4) {
-                listOfErrors.appendChild(createMenuItem('There are ' 
-                + inputsCounter.length + ' inputs in the form'));
-            }
-            if (buttonsCounter.length === 0) {
-                listOfErrors.appendChild(createMenuItem('There are no buttons in the form')).
-                classList.toggle('error-message'); 
-            } else if (buttonsCounter.length < 3) {
-                listOfErrors.appendChild(createMenuItem('There are missing buttons in the form')).
-                classList.toggle('error-message'); 
-            }  else if (buttonsCounter.length >= 3) {
-                listOfErrors.appendChild(createMenuItem('There are ' 
-                + buttonsCounter.length + ' buttons in the form'));
-            }
-            if (formRegisterName.value.length < 6 || !formRegisterName.value.includes(' ')) {
-                listOfErrors.appendChild(createMenuItem('The Name input does not have the correct format')).
-                classList.toggle('error-message');
-                listOfResults.appendChild(createMenuItem('The Name is: '+formRegisterName.value)).
-                classList.toggle('error-message');
-            } else {
-                listOfErrors.appendChild(createMenuItem('The Name input has the correct format'));
-                listOfResults.appendChild(createMenuItem('The Name is: '+formRegisterName.value)); 
-            }            
-            if (!formRegisterEmail.value.includes('@') || !formRegisterEmail.value.includes('.com')) {
-                listOfErrors.appendChild(createMenuItem('The e-mail format is incorrect')).
-                classList.toggle('error-message');
-                listOfResults.appendChild(createMenuItem('The e-mail is: '+formRegisterEmail.value)).
-                classList.toggle('error-message');
-            } else {
-                listOfErrors.appendChild(createMenuItem('The e-mail format is correct'));
-                listOfResults.appendChild(createMenuItem('The e-mail is: '+formRegisterEmail.value));
-            }
-            if (
-                formRegisterFirstPassword.value.match(/^[0-9]+$/) 
-                || formRegisterFirstPassword.value.match(/^[a-zA-Z]+$/)
-                || formRegisterFirstPassword.value.length < 8 
-                ) {
-                listOfErrors.appendChild(createMenuItem('The first password format is incorrect')).
-                classList.toggle('error-message');
-                listOfResults.appendChild(createMenuItem('The first is: '+formRegisterFirstPassword.value)).
-                classList.toggle('error-message');
-            } else {
-                listOfErrors.appendChild(createMenuItem('The first password format is correct'));
-                listOfResults.appendChild(createMenuItem('The first is: '+formRegisterFirstPassword.value)); 
-            }
-            if ( formRegisterSecondPassword.value.match(/^[0-9]+$/) 
-                || formRegisterSecondPassword.value.match(/^[a-zA-Z]+$/)
-                || formRegisterSecondPassword.value.length < 8
-                || formRegisterFirstPassword.value !== formRegisterSecondPassword.value
+        if ( 
+            formCounter.length === 1 && labelsCounter.length === 4 && inputsCounter.length === 4 
+            && buttonsCounter.length === 3 
+            && formRegisterName.value.length >= 6 && formRegisterName.value.includes(' ') 
+            && formRegisterEmail.value.length !==0
+            && formRegisterEmail.value.includes('@') && formRegisterEmail.value.includes('.com') 
+            && !formRegisterFirstPassword.value.match(/^[0-9]+$/) 
+            && !formRegisterFirstPassword.value.match(/^[a-zA-Z]+$/)
+            && formRegisterFirstPassword.value.length >= 8 
+            && formRegisterSecondPassword.value.length !== 0 
+            && formRegisterFirstPassword.value === formRegisterSecondPassword.value
             ) {
-                listOfErrors.appendChild(createMenuItem('The second password format is invalid')).
-                classList.toggle('error-message');
+                allValidationsComplete = true;            
+                listOfErrors.appendChild(createMenuItem('Every validation has passed'));
+                listOfResults.appendChild(createMenuItem('The Name is: '+formRegisterName.value));
+                listOfResults.appendChild(createMenuItem('The e-mail is: '+formRegisterEmail.value));
+                listOfResults.appendChild(createMenuItem('The first is: '+formRegisterFirstPassword.value));
                 listOfResults.appendChild(
-                    createMenuItem('The second password is: '+
-                    formRegisterSecondPassword.value)).classList.toggle('error-message');
-            } else {
-                listOfErrors.appendChild(
-                    createMenuItem('The second password format is correct and passwords match')
-                );
-                listOfResults.appendChild(createMenuItem(
-                    'The second password is: '+formRegisterSecondPassword.value)
-                ); 
+                    createMenuItem('The second password is: '+formRegisterSecondPassword.value)
+                    );            
+            } else {            
+                if (formCounter.length === 0) {
+                    listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
+                    classList.toggle('error-message'); 
+                } else {
+                    listOfErrors.appendChild(createMenuItem('There is a form in the DOM'))
+                }
+                if (labelsCounter.length === 0) {
+                    listOfErrors.appendChild(createMenuItem('There are no labels in the form')).
+                    classList.toggle('error-message'); 
+                } else if (labelsCounter.length < 4) {
+                    listOfErrors.appendChild(createMenuItem('There are missing labels in the form')).
+                    classList.toggle('error-message'); 
+                }  else if (labelsCounter.length >= 4) {
+                    listOfErrors.appendChild(createMenuItem('There are ' 
+                    + labelsCounter.length + ' labels in the form'));
+                }
+                if (inputsCounter.length === 0) {
+                    listOfErrors.appendChild(createMenuItem('There are no inputs in the form')).
+                    classList.toggle('error-message'); 
+                } else if (inputsCounter.length < 4) {
+                    listOfErrors.appendChild(createMenuItem('There are missing inputs in the form')).
+                    classList.toggle('error-message'); 
+                }  else if (inputsCounter.length >= 4) {
+                    listOfErrors.appendChild(createMenuItem('There are ' 
+                    + inputsCounter.length + ' inputs in the form'));
+                }
+                if (buttonsCounter.length === 0) {
+                    listOfErrors.appendChild(createMenuItem('There are no buttons in the form')).
+                    classList.toggle('error-message'); 
+                } else if (buttonsCounter.length < 3) {
+                    listOfErrors.appendChild(createMenuItem('There are missing buttons in the form')).
+                    classList.toggle('error-message'); 
+                }  else if (buttonsCounter.length >= 3) {
+                    listOfErrors.appendChild(createMenuItem('There are ' 
+                    + buttonsCounter.length + ' buttons in the form'));
+                }
+                if (formRegisterName.value.length < 6 || !formRegisterName.value.includes(' ')) {
+                    listOfErrors.appendChild(createMenuItem('The Name input does not have the correct format')).
+                    classList.toggle('error-message');
+                    listOfResults.appendChild(createMenuItem('The Name is: '+formRegisterName.value)).
+                    classList.toggle('error-message');
+                } else {
+                    listOfErrors.appendChild(createMenuItem('The Name input has the correct format'));
+                    listOfResults.appendChild(createMenuItem('The Name is: '+formRegisterName.value)); 
+                }            
+                if (!formRegisterEmail.value.includes('@') || !formRegisterEmail.value.includes('.com')) {
+                    listOfErrors.appendChild(createMenuItem('The e-mail format is incorrect')).
+                    classList.toggle('error-message');
+                    listOfResults.appendChild(createMenuItem('The e-mail is: '+formRegisterEmail.value)).
+                    classList.toggle('error-message');
+                } else {
+                    listOfErrors.appendChild(createMenuItem('The e-mail format is correct'));
+                    listOfResults.appendChild(createMenuItem('The e-mail is: '+formRegisterEmail.value));
+                }
+                if (
+                    formRegisterFirstPassword.value.match(/^[0-9]+$/) 
+                    || formRegisterFirstPassword.value.match(/^[a-zA-Z]+$/)
+                    || formRegisterFirstPassword.value.length < 8 
+                    ) {
+                    listOfErrors.appendChild(createMenuItem('The first password format is incorrect')).
+                    classList.toggle('error-message');
+                    listOfResults.appendChild(createMenuItem('The first is: '+formRegisterFirstPassword.value)).
+                    classList.toggle('error-message');
+                } else {
+                    listOfErrors.appendChild(createMenuItem('The first password format is correct'));
+                    listOfResults.appendChild(createMenuItem('The first is: '+formRegisterFirstPassword.value)); 
+                }
+                if ( formRegisterSecondPassword.value.match(/^[0-9]+$/) 
+                    || formRegisterSecondPassword.value.match(/^[a-zA-Z]+$/)
+                    || formRegisterSecondPassword.value.length < 8
+                    || formRegisterFirstPassword.value !== formRegisterSecondPassword.value
+                ) {
+                    listOfErrors.appendChild(createMenuItem('The second password format is invalid')).
+                    classList.toggle('error-message');
+                    listOfResults.appendChild(
+                        createMenuItem('The second password is: '+
+                        formRegisterSecondPassword.value)).classList.toggle('error-message');
+                } else {
+                    listOfErrors.appendChild(
+                        createMenuItem('The second password format is correct and passwords match')
+                    );
+                    listOfResults.appendChild(createMenuItem(
+                        'The second password is: '+formRegisterSecondPassword.value)
+                    ); 
+                }
+                if (formRegisterFirstPassword.value === formRegisterSecondPassword.value) {
+                    listOfErrors.appendChild(createMenuItem('Passwords match'));                 
+                } else {
+                    listOfErrors.appendChild(createMenuItem('Passwords do not match')).
+                    classList.toggle('error-message');
+                }
             }
-            if (formRegisterFirstPassword.value === formRegisterSecondPassword.value) {
-                listOfErrors.appendChild(createMenuItem('Passwords match'));                 
-            } else {
-                listOfErrors.appendChild(createMenuItem('Passwords do not match')).
-                classList.toggle('error-message');
-            }
-        }
-    } else {
-        alert('make sure you finish with the validations first');
-        e.preventDefault();
+        } else {
+            alert('make sure you finish with the validations first');
+            e.preventDefault();
     }
 }
 function resetRegisterForm(e) {
@@ -232,7 +232,7 @@ function cleanFormFunction(e) {
 }
 /*HTTP request*/
 async function httpGetRequest() {
-    if (allValidationsComplete === true) {
+    if (allValidationsComplete === true && listOfErrors.innerHTML.trim() == "") {
         // console.log('get triggers');
         try {
             const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${formRegisterEmail.value}`, {
