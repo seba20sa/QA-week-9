@@ -12,9 +12,6 @@ var labelsCounter = Array.from(document.getElementsByTagName('label'));
 var inputsCounter = Array.from(document.getElementsByTagName('input'));
 var buttonsCounter = Array.from(document.getElementsByTagName('button'));
 var cleanFormLink = document.getElementById('clean-form-link');
-
-
-
 /*EVENT LISTENERS*/
 formLoginButton.addEventListener('click', submitLoginForm);
 cleanFormLink.addEventListener('click', cleanFormFunction);
@@ -56,8 +53,7 @@ function checkLoginPassword(e) {
 }
 /*the function performs a validation for the fields and the DOM elements as well, also it checks if 
 there is a previous error log from before if it is a prvious one it overwrites that one.*/
-function submitLoginForm(e) {         
-    
+function submitLoginForm(e) {
     /*validates that there is not a previous list of error*/
     if (listOfErrors.innerHTML.trim() === "") {        
         e.preventDefault();
@@ -143,8 +139,7 @@ function submitLoginForm(e) {
                     listOfErrors.appendChild(createMenuItem('Password has the correct format'));
                     listOfResults.appendChild(createMenuItem('Password is: '+formLoginPassword.value));
                 }
-            }
-    
+            }    
     } else {
         alert('make sure you finish with the validations first')
         e.preventDefault();

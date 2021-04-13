@@ -120,12 +120,12 @@ function submitRegisterForm(e) {
             listOfResults.appendChild(
                 createMenuItem('The second password is: '+formRegisterSecondPassword.value)
                 );
-            /*if all the validations pass, the function performs the request*/
+            /*if all the validations pass, the function performs the HTTP request*/
             fetch(
-                `https://jsonplaceholder.typicode.com/users?email=randomEmail@gmail.com`, 
+                `https://jsonplaceholder.typicode.com/users?email=${formRegisterEmail.value}`, 
                 {method: 'get'}
             )
-                .then(() => console.log('mail has been recieved'))
+                .then(() => console.log('mail has been sent'))
                 .catch(() => console.log('could not get requested URL')) 
         } else {            
             if (formCounter.length === 0) {
@@ -225,7 +225,6 @@ function submitRegisterForm(e) {
         e.preventDefault();
     }
 }
-
 function resetRegisterForm(e) {
     mainForm.reset();
 }
