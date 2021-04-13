@@ -12,8 +12,10 @@ var labelsCounter = Array.from(document.getElementsByTagName('label'));
 var inputsCounter = Array.from(document.getElementsByTagName('input'));
 var buttonsCounter = Array.from(document.getElementsByTagName('button'));
 var cleanFormLink = document.getElementById('clean-form-link');
+var allValidationsComplete = false;
 /*EVENT LISTENERS*/
 formLoginButton.addEventListener('click', submitLoginForm);
+formLoginButton.addEventListener('click', httpGetRequest);
 cleanFormLink.addEventListener('click', cleanFormFunction);
 formLoginEmail.addEventListener('focus', hideLoginEmailError);
 formLoginEmail.addEventListener('blur', checkLoginEmail);
@@ -66,16 +68,10 @@ function submitLoginForm(e) {
             && !formLoginPassword.value.match(/^[a-zA-Z]+$/)
             && formLoginPassword.value.length >= 8 
             ) {
+                allValidationsComplete = true;
                 listOfErrors.appendChild(createMenuItem('Every validation has passed'));
                 listOfResults.appendChild(createMenuItem('The email is: '+formLoginEmail.value));
-                listOfResults.appendChild(createMenuItem('Password is: '+formLoginPassword.value));
-                /*if all the validations pass, the function performs the request*/
-                fetch(
-                        `https://jsonplaceholder.typicode.com/users?email=${formLoginEmail.value}`, 
-                        {method: 'get'}
-                    )
-                        .then(() => console.log('mail has been sent'))
-                        .catch(() => console.log('Something went wrong')) 
+                listOfResults.appendChild(createMenuItem('Password is: '+formLoginPassword.value));                 
             } else {
                 if (formCounter.length === 0) {
                     listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
@@ -150,4 +146,18 @@ function cleanFormFunction(e) {
     listOfErrors.innerHTML = '';
     listOfResults.innerHTML = '';
     errorLoginContainer.classList.toggle('hidden');
+}
+/*HTTP request*/
+async function httpGetRequest() {
+    if (allValidationsComplete === true) {
+        // console.log('get triggers');
+        try {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${formLoginEmail.value}`, {
+                method: 'get',
+            });
+            console.log('HTTP request was successful', response);
+        } catch (err) {
+            console.error(`Error: ${err}`);
+        }
+    }
 }

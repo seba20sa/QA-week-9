@@ -4,6 +4,7 @@ var formRegisterEmail = document.getElementById('form-register-email');
 var formRegisterFirstPassword = document.getElementById('form-register-first-password');
 var formRegisterSecondPassword = document.getElementById('form-register-second-password');
 var mainForm = document.getElementById('main-form');
+var allValidationsComplete = false;
 /*register*/
 var registerErrorName = document.getElementById('register-error-name');
 var registerErrorEmail = document.getElementById('register-error-email');
@@ -23,6 +24,7 @@ var buttonsCounter = Array.from(document.getElementsByTagName('button'));
 var cleanFormLink = document.getElementById('clean-form-link');
 /*LISTENERS*/
 formRegisterSubmitButton.addEventListener('click', submitRegisterForm);
+formRegisterSubmitButton.addEventListener('click', httpGetRequest);
 formRegisterResetButton.addEventListener('click', resetRegisterForm);
 cleanFormLink.addEventListener('click', cleanFormFunction);
 formRegisterName.addEventListener('focus', hideRegisterNameError);
@@ -113,20 +115,14 @@ function submitRegisterForm(e) {
         && formRegisterSecondPassword.value.length !== 0 
         && formRegisterFirstPassword.value === formRegisterSecondPassword.value
         ) {
+            allValidationsComplete = true;            
             listOfErrors.appendChild(createMenuItem('Every validation has passed'));
             listOfResults.appendChild(createMenuItem('The Name is: '+formRegisterName.value));
             listOfResults.appendChild(createMenuItem('The e-mail is: '+formRegisterEmail.value));
             listOfResults.appendChild(createMenuItem('The first is: '+formRegisterFirstPassword.value));
             listOfResults.appendChild(
                 createMenuItem('The second password is: '+formRegisterSecondPassword.value)
-                );
-            /*if all the validations pass, the function performs the HTTP request*/
-            fetch(
-                `https://jsonplaceholder.typicode.com/users?email=${formRegisterEmail.value}`, 
-                {method: 'get'}
-            )
-                .then(() => console.log('mail has been sent'))
-                .catch(() => console.log('could not get requested URL')) 
+                );            
         } else {            
             if (formCounter.length === 0) {
                 listOfErrors.appendChild(createMenuItem('There is no form in the DOM')).
@@ -233,4 +229,18 @@ function cleanFormFunction(e) {
     listOfErrors.innerHTML = '';
     listOfResults.innerHTML = '';
     errorLoginContainer.classList.toggle('hidden');
+}
+/*HTTP request*/
+async function httpGetRequest() {
+    if (allValidationsComplete === true) {
+        // console.log('get triggers');
+        try {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${formRegisterEmail.value}`, {
+                method: 'get',
+            });
+            console.log('HTTP request was successful', response);
+        } catch (err) {
+            console.error(`Error: ${err}`);
+        }
+    }
 }
