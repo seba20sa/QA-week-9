@@ -149,15 +149,17 @@ function cleanFormFunction(e) {
 }
 /*HTTP request*/
 async function httpGetRequest() {
-    if (allValidationsComplete === true && listOfErrors.innerHTML.trim() == "") {
+    if (allValidationsComplete === true) {
         // console.log('get triggers');
         try {
             const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${formLoginEmail.value}`, {
                 method: 'get',
             });
             console.log('HTTP request was successful', response);
+            
         } catch (err) {
             console.error(`Error: ${err}`);
+            
         }
     }
 }

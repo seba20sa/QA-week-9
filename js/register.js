@@ -232,7 +232,7 @@ function cleanFormFunction(e) {
 }
 /*HTTP request*/
 async function httpGetRequest() {
-    if (allValidationsComplete === true && listOfErrors.innerHTML.trim() == "") {
+    if (allValidationsComplete === true) {
         // console.log('get triggers');
         try {
             const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${formRegisterEmail.value}`, {
