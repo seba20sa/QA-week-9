@@ -25,6 +25,7 @@ var cleanFormLink = document.getElementById('clean-form-link');
 /*LISTENERS*/
 formRegisterSubmitButton.addEventListener('click', submitRegisterForm);
 formRegisterSubmitButton.addEventListener('click', httpGetRequest);
+formRegisterSubmitButton.addEventListener('click', handleRegister);
 formRegisterResetButton.addEventListener('click', resetRegisterForm);
 cleanFormLink.addEventListener('click', cleanFormFunction);
 formRegisterName.addEventListener('focus', hideRegisterNameError);
@@ -243,4 +244,9 @@ async function httpGetRequest() {
             console.error(`Error: ${err}`);
         }
     }
+}
+
+// HANDLE REGISTER
+function handleRegister() {
+    
 }

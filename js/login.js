@@ -16,11 +16,13 @@ var allValidationsComplete = false;
 /*EVENT LISTENERS*/
 formLoginButton.addEventListener('click', submitLoginForm);
 formLoginButton.addEventListener('click', httpGetRequest);
+formLoginButton.addEventListener('click', handleLogin);
 cleanFormLink.addEventListener('click', cleanFormFunction);
 formLoginEmail.addEventListener('focus', hideLoginEmailError);
 formLoginEmail.addEventListener('blur', checkLoginEmail);
 formLoginPassword.addEventListener('focus', hideLoginPasswordError);
 formLoginPassword.addEventListener('blur', checkLoginPassword);
+
 /*FUNCTIONS*/
 /*First we create a function that creates new li items on a list to add error messages 
 on to the errors log div*/
@@ -150,7 +152,7 @@ function cleanFormFunction(e) {
 /*HTTP request*/
 async function httpGetRequest() {
     if (allValidationsComplete === true) {
-        // console.log('get triggers');
+        
         try {
             const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${formLoginEmail.value}`, {
                 method: 'get',
@@ -163,3 +165,10 @@ async function httpGetRequest() {
         }
     }
 }
+
+// HANDLE LOGIN
+ function handleLogin() {
+    
+}
+
+
