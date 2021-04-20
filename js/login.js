@@ -15,7 +15,6 @@ var cleanFormLink = document.getElementById('clean-form-link');
 var allValidationsComplete = false;
 /*EVENT LISTENERS*/
 formLoginButton.addEventListener('click', submitLoginForm);
-// formLoginButton.addEventListener('click', httpGetRequest);
 formLoginButton.addEventListener('click', handleLogin);
 cleanFormLink.addEventListener('click', cleanFormFunction);
 formLoginEmail.addEventListener('focus', hideLoginEmailError);
@@ -151,7 +150,7 @@ function cleanFormFunction(e) {
 }
 
 
-// HANDLE LOGIN
+/* HANDLE LOGIN */
 async function handleLogin() {
     const data = {
         email: formLoginEmail.value,

@@ -24,7 +24,6 @@ var buttonsCounter = Array.from(document.getElementsByTagName('button'));
 var cleanFormLink = document.getElementById('clean-form-link');
 /*LISTENERS*/
 formRegisterSubmitButton.addEventListener('click', submitRegisterForm);
-// formRegisterSubmitButton.addEventListener('click', httpGetRequest);
 formRegisterSubmitButton.addEventListener('click', handleRegister);
 formRegisterResetButton.addEventListener('click', resetRegisterForm);
 cleanFormLink.addEventListener('click', cleanFormFunction);
@@ -234,7 +233,7 @@ function cleanFormFunction(e) {
 /*HTTP request*/
 async function httpGetRequest() {
     if (allValidationsComplete === true) {
-        // console.log('get triggers');
+        
         try {
             const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${formRegisterEmail.value}`, {
                 method: 'get',
@@ -246,8 +245,8 @@ async function httpGetRequest() {
     }
 }
 
-// HANDLE REGISTER
-// Request HTTP through GET method
+/* HANDLE REGISTER */
+/* Request HTTP through GET method */
 function handleRegister() {
     const data = {
         email: formRegisterEmail .value,
