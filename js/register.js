@@ -24,7 +24,7 @@ var buttonsCounter = Array.from(document.getElementsByTagName('button'));
 var cleanFormLink = document.getElementById('clean-form-link');
 /*LISTENERS*/
 formRegisterSubmitButton.addEventListener('click', submitRegisterForm);
-formRegisterSubmitButton.addEventListener('click', httpGetRequest);
+// formRegisterSubmitButton.addEventListener('click', httpGetRequest);
 formRegisterSubmitButton.addEventListener('click', handleRegister);
 formRegisterResetButton.addEventListener('click', resetRegisterForm);
 cleanFormLink.addEventListener('click', cleanFormFunction);
@@ -247,6 +247,22 @@ async function httpGetRequest() {
 }
 
 // HANDLE REGISTER
+// Request HTTP through GET method
 function handleRegister() {
-    
+    const data = {
+        email: formRegisterEmail .value,
+        name: formRegisterName.value,
+        password: formRegisterFirstPassword.value,
+    };
+    fetch('http://localhost:4000/register', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+    })
+        .then((response) => response.json())
+        .then((a) => console.log(a))
+        .catch((err) => console.log(err));
 }

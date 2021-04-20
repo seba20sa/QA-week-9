@@ -15,7 +15,7 @@ var cleanFormLink = document.getElementById('clean-form-link');
 var allValidationsComplete = false;
 /*EVENT LISTENERS*/
 formLoginButton.addEventListener('click', submitLoginForm);
-formLoginButton.addEventListener('click', httpGetRequest);
+// formLoginButton.addEventListener('click', httpGetRequest);
 formLoginButton.addEventListener('click', handleLogin);
 cleanFormLink.addEventListener('click', cleanFormFunction);
 formLoginEmail.addEventListener('focus', hideLoginEmailError);
@@ -149,26 +149,24 @@ function cleanFormFunction(e) {
     listOfResults.innerHTML = '';
     errorLoginContainer.classList.toggle('hidden');
 }
-/*HTTP request*/
-async function httpGetRequest() {
-    if (allValidationsComplete === true) {
-        
-        try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/users?email=${formLoginEmail.value}`, {
-                method: 'get',
-            });
-            console.log('HTTP request was successful', response);
-            
-        } catch (err) {
-            console.error(`Error: ${err}`);
-            
-        }
-    }
-}
+
 
 // HANDLE LOGIN
- function handleLogin() {
-    
+async function handleLogin() {
+    const data = {
+        email: formLoginEmail.value,
+        password: formLoginPassword.value
+    }
+    fetch('http://localhost:4000/login', {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    }).then(response => response.json())
+        .then(a => console.log(a))
+        .catch(err => console.log(err))
 }
 
 
